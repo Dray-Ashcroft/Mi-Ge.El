@@ -1,0 +1,165 @@
+Add a Fertilization Mode Toggle to the reproductive anatomy stage.
+
+Toggle Controls
+
+Create two mutually exclusive options:
+
+- No Fertilization (Default)
+- Fertilization Mode
+
+Default state must remain No Fertilization so the current menstrual cycle behavior remains unchanged.
+
+---
+
+Fertilization Mode
+
+When Fertilization Mode is enabled:
+
+Step 1: Ovulation
+
+Continue using the existing ovulation animation.
+
+- One mature ovum is released from the active ovary.
+- Ovum travels through the fallopian tube.
+- Ovum pauses within the ampulla region of the fallopian tube.
+
+---
+
+Step 2: Sperm Migration
+
+Increase sperm activity.
+
+Animate multiple sperm cells traveling along the biological pathway:
+
+Male Reproductive Tract
+→ Vagina
+→ Cervix
+→ Uterus
+→ Fallopian Tube
+
+Requirements:
+
+- Many sperm begin the journey.
+- Most sperm gradually disappear before reaching the ovum.
+- Only one sperm successfully fertilizes the ovum.
+- Motion should follow smooth invisible curved paths.
+- Existing sperm transport animations should remain functional.
+
+---
+
+Step 3: Microscopic Fertilization Bubble
+
+When a sperm reaches the ovum:
+
+Display a magnified educational inset bubble.
+
+Inside the bubble show:
+
+1. Sperm contacts ovum membrane.
+2. Sperm nucleus enters ovum.
+3. Male and female pronuclei move toward each other.
+4. Pronuclei fuse.
+
+Display label:
+
+"Haploid Male Nucleus (n) + Haploid Female Nucleus (n)"
+
+Then:
+
+"Diploid Zygote Formed (2n)"
+
+---
+
+Step 4: Zygote Formation
+
+After nuclear fusion:
+
+- Ovum transforms into a zygote.
+- Zygote briefly glows.
+- Show label:
+
+"Zygote (2n)"
+
+---
+
+Step 5: Cleavage Divisions
+
+Animate rapid mitotic divisions.
+
+Sequence:
+
+1 Cell (Zygote)
+↓
+2 Cells
+↓
+4 Cells
+↓
+8 Cells
+↓
+16 Cells
+
+Each stage should be visually distinct.
+
+Show educational labels:
+
+"Cleavage Division"
+
+"Morula Formation"
+
+---
+
+Step 6: Morula
+
+At the 16-cell stage:
+
+- Display compact ball of cells.
+- Label:
+
+"Morula (16-cell stage)"
+
+- Morula slowly moves toward the uterus.
+
+---
+
+Step 7: Implantation Preparation
+
+When the morula reaches the uterus:
+
+- Existing endometrium remains thick.
+- Menstruation does NOT occur.
+- Endometrial shedding animation is disabled.
+- Uterus remains vascularized.
+
+Display label:
+
+"Uterus Prepared for Implantation"
+
+---
+
+Scientific Accuracy Requirements
+
+- Only one sperm fertilizes the ovum.
+- Male nucleus and female nucleus must fuse before zygote formation.
+- Cleavage occurs by mitosis.
+- Morula is represented as approximately 16 cells.
+- Fertilization normally occurs in the fallopian tube, not the uterus.
+- Menstruation does not occur after successful fertilization.
+
+---
+
+Visual Requirements
+
+- Smooth animations.
+- Educational labels.
+- Mobile friendly.
+- Preserve all existing functionality.
+- No graphic or medical imagery.
+- Focus on biological education and scientific accuracy.
+
+Goal: allow students to compare two pathways:
+
+No Fertilization:
+Ovulation → Endometrial Shedding → New Cycle
+
+Fertilization Mode:
+Ovulation → Fertilization → Zygote → Cleavage → Morula → Uterine Arrival
