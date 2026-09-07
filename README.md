@@ -1,45 +1,50 @@
 <p align="center">
-  <img src="assets/repo-banner.png" alt="Meiosis Genesis: Elucidator Banner" width="100%">
+  <img src="assets/repo-banner.png" alt="Meiosis Genesis: Elucidator — Interactive Meiosis Simulator" width="100%">
 </p>
 
 # 🧬 Meiosis Genesis: Elucidator
 
-Interactive HTML simulator visualizing meiotic cell division, chromosome behavior, and genetic recombination.
+### *Interactive Meiosis Simulator*
+
+> **Meiosis Genesis: Elucidator** is an interactive visualization exploring **meiotic cell division, chromosome behavior, and genetic recombination**.
+>
+> 🧬 **Cell Division** · 🧪 **Genetic Recombination** · 🔬 **Chromosome Dynamics**
+
+**🔬 [Explore the Simulation](YOUR-LINK-HERE)**
 
 ---
 
-## ✨ Features
+## ✦ Features
 
-* **Interactive Stages:** Step-by-step simulation of Meiosis I and Meiosis II.
-* **Chromosome Dynamics:** Visualize homologous pairing, crossing over, and chromosome segregation.
-* **Educational Workflow:** Browser-based interface designed for scientific accuracy and learning.
-* **Responsive Design:** Optimized for desktop and mobile devices.
+**🧬 Interactive Stages**  
+Explore the sequential stages of **Meiosis I and Meiosis II**.
 
----
+**🧪 Chromosome Dynamics**  
+Visualize homologous pairing, crossing over, and chromosome segregation.
 
-## 🚀 Built With & Hosted On
+**🔬 Genetic Recombination**  
+Explore the chromosomal basis of genetic variation during meiosis.
 
-* **Repository:** GitHub
-* **Hosting:** Vercel
-
----
-
-## 🛠️ Credits & Acknowledgments
-
-* **Claude Sonnet:** Debugging, code generation & architecture.
-* **Replit:** Code improvisation & rapid prototyping.
-* **OpenAI:** Scientific debugging, testing & logic optimization.
+**📱 Responsive Design**  
+Optimized for modern desktop and mobile devices.
 
 ---
 
-## 👤 Author
+## 🧬 Core Concepts
 
-* **Draven Ashcroft**
-  * M.Sc. Ag. Entomology, ASRB NET
-  * DIPS Chain of Institutions
+**Meiosis I · Meiosis II · Homologous Chromosomes · Crossing Over · Chromosome Segregation · Genetic Recombination**
+
+---
+
+## ⚙️ Technology
+
+**HTML · CSS · JavaScript**
+
+**Repository:** GitHub & Codeberg  
+**Hosting:** Vercel
 
 ---
 
 ## 📜 License
 
-GPL-3.0
+Distributed under the **GNU General Public License v3.0 (GPL-3.0)**.
