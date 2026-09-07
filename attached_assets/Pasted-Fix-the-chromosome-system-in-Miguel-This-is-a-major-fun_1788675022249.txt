@@ -1,0 +1,95 @@
+Fix the chromosome system in Miguel. This is a major functional correction, not a cosmetic adjustment.
+
+### 1. Chromosome genetic identity
+
+Each replicated chromosome must have the correct allele labels on BOTH sister chromatids.
+
+The chromosome set must visually and genetically represent:
+
+* **Yellow chromosome:** `R` and `R` on the corresponding chromosome arms, with the duplicated sister chromatid carrying the same `R` allele.
+* **Red chromosome:** `Y` and `Y` on the corresponding chromosome arms, with the duplicated sister chromatid carrying the same `Y` allele.
+* The corresponding recessive homologs must carry **`r` and `r`** and **`y` and `y`** respectively.
+
+In other words, do not treat the letters as decorative labels. They must be tied to the underlying identity of the chromosome/chromatid.
+
+### 2. Initial stage
+
+From the very beginning of the simulation:
+
+* Every chromosome must be correctly positioned.
+* Every chromatid must have the correct allele labels.
+* Both arms of the duplicated chromatids must display the appropriate allele.
+* Homologous chromosomes must be distinguishable.
+* Labels must move with their chromosome/chromatid rather than being independently positioned on the screen.
+
+### 3. Initiate Crossing Over
+
+When the user clicks **“Initiate Crossing Over”**:
+
+* Correctly align the homologous chromosomes before crossing over.
+* Perform the crossover between the appropriate non-sister chromatids.
+* Reassort the corresponding chromosome segments.
+* Update the underlying chromosome/chromatid genetic state.
+* The resulting recombinant chromatids must contain the correct combination of `R/r` and `Y/y` alleles according to the crossover.
+* The visual chromosome segments and allele labels must reflect the actual recombination.
+
+Do NOT merely animate or swap labels visually. The underlying chromosome data/state must actually change.
+
+### 4. Persistence through every stage
+
+After crossing over, the resulting chromosome configuration must persist through every subsequent simulation stage.
+
+For every stage:
+
+**chromosome genetic state → chromatid state → chromosome geometry → allele labels → rendered position**
+
+must remain synchronized.
+
+When the stage changes, recalculate the chromosome positions and geometry for that stage, but NEVER reset the chromosome's genetic/recombination state.
+
+### 5. Critical requirement
+
+The chromosome system must work as a continuous state machine:
+
+**Initial chromosomes**
+→ **homologous alignment**
+→ **crossing-over initiation**
+→ **recombinant chromatids**
+→ **subsequent stages**
+→ **final stage**
+
+The recombinant configuration produced during crossing over must still be present at the final stage.
+
+### 6. Do not break existing Miguel
+
+Before modifying anything, inspect the existing implementation and identify:
+
+* chromosome data/state
+* chromatid/allele representation
+* stage-transition logic
+* chromosome positioning/coordinates
+* crossing-over logic
+* label rendering
+* animation/state transitions
+
+Explain the root cause of the current bug first.
+
+Then implement the smallest robust fix.
+
+Do NOT rebuild Miguel from scratch.
+Do NOT redesign the UI.
+Do NOT change unrelated animations or biological content.
+Do NOT use hard-coded label positions that only work at one stage.
+
+Finally, test the chromosome system manually across EVERY stage, specifically verifying:
+
+1. Initial chromosome arrangement
+2. Correct `R/R`, `r/r`, `Y/Y`, and `y/y` allele representation
+3. Both sister chromatids/arms carry the appropriate allele identity
+4. Homologous alignment
+5. Crossing-over interaction
+6. Correct recombinant chromosome state
+7. Persistence of recombinant state through every subsequent stage
+8. Correct chromosome repositioning at every stage
+9. Correct labels after every repositioning
+10. Correct final-stage chromosome configuration

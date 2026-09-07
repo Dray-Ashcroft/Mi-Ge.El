@@ -8,7 +8,7 @@ Interactive browser-based simulator visualizing meiotic cell division, chromosom
 - `pnpm --filter @workspace/api-server run dev` — run the API server (workflow: `artifacts/api-server: API Server`)
 - `pnpm run typecheck` — full typecheck across all packages
 - `pnpm run build` — typecheck + build all packages
-- `pnpm install` — install all workspace dependencies
+- `pnpm install --filter @workspace/meiosis... --frozen-lockfile` — install the Meiosis front-end dependency closure without pulling unrelated workspace packages
 
 ## Stack
 
