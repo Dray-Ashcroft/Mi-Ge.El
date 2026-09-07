@@ -8,7 +8,7 @@
 
 > **Meiosis Genesis: Elucidator** is an interactive visualization exploring **meiotic cell division, chromosome behavior, and genetic recombination**.
 >
-> 🧬 **Cell Division** · 🧪 **Genetic Recombination** · 🔬 **Chromosome Dynamics**
+🧬 **Cell Division** · 🧪 **Genetic Recombination** · 🔬 **Chromosome Dynamics**
 
 **🔬 [Explore the Simulation](YOUR-LINK-HERE)**
 
