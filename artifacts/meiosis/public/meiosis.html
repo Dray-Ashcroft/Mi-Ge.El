@@ -4658,10 +4658,6 @@
                     drawDuplicatedChromosomeSide(c.x, c.y, c, c.type === 'long', 0);
                     if (c.id.endsWith('b')) drawCentroSideDot(c.x, c.y);
                     ctx.restore();
-                    const isLong = c.type === 'long';
-                    const splay = isLong ? 10 : 7; const arm = isLong ? 26 : 18;
-                    const offX = c.id.endsWith('a') ? -(splay + 10) : (splay + 10);
-                    drawGeneLabel(c.x, c.y, c.label, c.color, offX * CHROM_SCALE, (arm + 4) * CHROM_SCALE, 0.65, c.canSwap && c.swapped, c.partnerColor);
                 });
             }
         }
@@ -4719,11 +4715,6 @@
                     drawDuplicatedChromosomeSide(c.x, c.y, c, c.type === 'long', 0, 1, lengthScale, thicknessScale);
                     if (c.id.endsWith('b')) drawCentroSideDot(c.x, c.y, thicknessScale);
                     ctx.restore();
-                    const isLong = c.type === 'long';
-                    const splay = (isLong ? 10 : 7) * lengthScale * baseScale;
-                    const arm   = (isLong ? 26 : 18) * lengthScale * baseScale;
-                    const offX = c.id.endsWith('a') ? -(splay + 10) : (splay + 10);
-                    drawGeneLabel(c.x, c.y, c.label, c.color, offX, arm + 4, 0.65, c.canSwap && c.swapped, c.partnerColor);
                 });
             });
 
@@ -5031,9 +5022,6 @@
                     const mainCol  = isRecomb ? ch.partnerColor : ch.color;
                     const secCol   = isRecomb ? ch.color        : ch.partnerColor;
                     drawChromatidSmoothV(x, y, mainCol, secCol, isRecomb, ch.type === 'long', dir, 0);
-                    const tipOff = ch.type === 'long' ? 32 : 23;
-                    const yOff   = dir === "up" ? (tipOff + 4) : -(tipOff + 4);
-                    drawGeneLabel(x, y, ch.label, ch.color, 0, yOff, 0.72, isRecomb, ch.partnerColor);
                 }
 
                 drawChromV(fiber1X, topA_Long_Y,    topLongA,  "up");
@@ -5178,22 +5166,6 @@
             drawCHC(fiber1X, botS_y, botLongB,  "down");
             drawCHC(fiber4X, botS_y, botShortB, "down");
             ctx.restore();
-
-            // ── Gene labels (data-driven) ────────────────────────────────────────
-            const lAlpha = gAlpha * 0.85;
-            function tlLabel(x, y, ch) {
-                if (!ch) return;
-                const isRecomb = ch.canSwap && ch.swapped;
-                drawGeneLabel(x, y, ch.label, ch.color, 16, 0, lAlpha, isRecomb, ch.partnerColor);
-            }
-            tlLabel(fiber1X, topN_y, topLongA);
-            tlLabel(fiber4X, topN_y, topShortA);
-            tlLabel(fiber1X, topS_y, topLongB);
-            tlLabel(fiber4X, topS_y, topShortB);
-            tlLabel(fiber1X, botN_y, botLongA);
-            tlLabel(fiber4X, botN_y, botShortA);
-            tlLabel(fiber1X, botS_y, botLongB);
-            tlLabel(fiber4X, botS_y, botShortB);
 
             // ── Nuclear envelope re-forming ──────────────────────────────────────
             const envProgress = Math.max(0, Math.min(1, (ease - 0.35) / 0.65));
@@ -5824,33 +5796,6 @@
             if (currentStage ===8) return; // Interkinesis handled by drawInterkinesis()
         }
         
-        // ── Gene label helper ───────────────────────────────────────────────────
-        // Draws the allele letter (R/r/Y/y) near a chromosome.
-        // offX/offY: pixel offset from the chromosome centre to place the label.
-        // alpha: 0–1 opacity (default 0.72 — visible but non-intrusive).
-            // recombinant: if true the label gets the partnerColor and complementary
-            // allele case to show the swapped allele (R→r, r→R, Y→y, y→Y).
-        function drawGeneLabel(x, y, text, chromColor, offX, offY, alpha, recombinant, partnerColor) {
-            if (currentStage ===0) return; // no labels during interphase
-            alpha = (alpha === undefined) ? 0.72 : alpha;
-            ctx.save();
-            ctx.font = "bold 10px 'Segoe UI', system-ui, sans-serif";
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-            // Tiny dark shadow for legibility on any background
-            ctx.shadowColor = "rgba(0,0,0,0.8)";
-            ctx.shadowBlur = 3;
-            const col = (recombinant && partnerColor) ? partnerColor : chromColor;
-                const displayedText = recombinant
-                    ? (text === text.toUpperCase() ? text.toLowerCase() : text.toUpperCase())
-                    : text;
-            // Parse hex color and apply alpha
-            const r = parseInt(col.slice(1,3),16), g = parseInt(col.slice(3,5),16), b = parseInt(col.slice(5,7),16);
-            ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`;
-                ctx.fillText(displayedText, x + offX, y + offY);
-            ctx.restore();
-        }
-
         function drawChromatidStage(c) { 
             const isLong = c.type === 'long'; 
             if (currentStage ===10) { 
@@ -5858,14 +5803,6 @@
                 const ts = (prophaseIICompleted && (currentStage >=10)) ? 1.25 : 1;
                 drawDuplicatedChromosomeSide(c.x, c.y, c, isLong, 0, 1, ls, ts);
                 if (c.id.endsWith('b')) drawCentroSideDot(c.x, c.y, ts);
-                // Gene label
-                {
-                    const splay = (isLong ? 10 : 7) * ls;
-                    const arm   = (isLong ? 26 : 18) * ls;
-                    const offX  = c.id.endsWith('a') ? -(splay + 10) : (splay + 10);
-                    const isRecomb = c.canSwap && c.swapped;
-                    drawGeneLabel(c.x, c.y, c.label, c.color, offX, arm + 4, 0.72, isRecomb, c.partnerColor);
-                }
                 return; 
             } 
             if (currentStage ===6 || currentStage ===7) {
@@ -5873,14 +5810,6 @@
                 drawDuplicatedChromosomeSide(c.x, c.y, c, isLong, 0);
                 // Draw centromere dot on the 'b' pass so it lands on top of both arms.
                 if (c.id.endsWith('b')) drawCentroSideDot(c.x, c.y);
-                // Gene label: 'a'=left side offset left, 'b'=right side offset right
-                {
-                    const splay = isLong ? 10 : 7;
-                    const arm   = isLong ? 26 : 18;
-                    const offX  = c.id.endsWith('a') ? -(splay + 10) : (splay + 10);
-                    const isRecomb = c.canSwap && c.swapped;
-                    drawGeneLabel(c.x, c.y, c.label, c.color, offX, arm + 4, 0.72, isRecomb, c.partnerColor);
-                }
                 return;
             } 
 
@@ -5969,29 +5898,6 @@
                 ctx.fillStyle = "white";
                 ctx.beginPath(); ctx.arc(0, 0, 5, 0, Math.PI*2); ctx.fill();
                 ctx.restore();
-                // Gene labels: keep one label on each arm, close to the arm tips.
-                // This makes the allele pattern explicit:
-                //   before crossover: RR / rr / YY / yy
-                //   after crossover:  RR + Rr, rr + rR, YY + Yy, yy + yY
-                const armTip = isLong ? 26 : 18;
-                const splayTip = isLong ? 10 : 7;
-                const labelOffset = splayTip + 10;
-                const labelY = armTip + 6;
-
-                // 'a' chromatid — left side of the X. The upper arm is always
-                // parental; only the lower arm can carry the exchanged allele.
-                drawGeneLabel(c.x, c.y, c.label, c.color, -labelOffset, -labelY, 0.72,
-                    false, c.partnerColor);
-                drawGeneLabel(c.x, c.y, c.label, c.color, -labelOffset, labelY, 0.72,
-                    stA.fullySwapped, c.partnerColor);
-
-                // 'b' chromatid — right side of the X.
-                if (partnerB) {
-                    drawGeneLabel(c.x, c.y, partnerB.label, partnerB.color, labelOffset, -labelY, 0.72,
-                        false, partnerB.partnerColor);
-                    drawGeneLabel(c.x, c.y, partnerB.label, partnerB.color, labelOffset, labelY, 0.72,
-                        stB.fullySwapped, partnerB.partnerColor);
-                }
                 return;
             }
             // ---- All other non-special stages (1–4): textured single-chromatid rod ----
@@ -6028,9 +5934,6 @@
                 drawCentromereGlow(0, 0, c.color, 0.85);
                 ctx.restore();
 
-                // Gene label: offset sideways based on lean direction
-                const leanOffX = lean > 0 ? 14 : (lean < 0 ? -14 : 14);
-                drawGeneLabel(c.x, c.y, c.label, c.color, leanOffX, isLong ? 22 : 16, 0.72, tipIsRecombinant, c.partnerColor);
             }
         }
 
