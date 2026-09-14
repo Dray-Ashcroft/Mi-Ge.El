@@ -10,7 +10,7 @@
 >
 🧬 **Cell Division** · 🧪 **Genetic Recombination** · 🔬 **Chromosome Dynamics**
 
-**🔬 [Explore the Simulation](https://mi-ge-el-meiosis-oli1bjwz2-draven-s-six-paths.vercel.app/)**
+**🔬 [Explore the Simulation](mi-ge-el.dray-ashcroft.workers.dev)**
 
 ---
 
