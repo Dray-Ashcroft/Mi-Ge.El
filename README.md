@@ -41,7 +41,7 @@ Optimized for modern desktop and mobile devices.
 **HTML · CSS · JavaScript**
 
 **Repository:** GitHub & Codeberg  
-**Hosting:** Vercel
+**Hosting:** Cloudflare
 
 ---
 
