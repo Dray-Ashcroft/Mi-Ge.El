@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/repo-banner.png" alt="Meiosis Genesis: Elucidator — Interactive Meiosis Simulator" width="100%">
+  <img src="assets/Repo-banner.png" alt="Meiosis Genesis: Elucidator — Interactive Meiosis Simulator" width="100%">
 </p>
 
 # 🧬 Meiosis Genesis: Elucidator
