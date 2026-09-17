@@ -10,7 +10,7 @@
 >
 🧬 **Cell Division** · 🧪 **Genetic Recombination** · 🔬 **Chromosome Dynamics**
 
-**🔬 [Explore the Simulation](mi-ge-el.dray-ashcroft.workers.dev)**
+**🔬 [Explore the Simulation](https://meiosis-genucilator.stark-kodex.workers.dev/)**
 
 ---
 
